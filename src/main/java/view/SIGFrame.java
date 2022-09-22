@@ -299,7 +299,7 @@ public class SIGFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
-        action_controller.fillTables();
+        action_controller.fillTables(null, null);
     }//GEN-LAST:event_loadActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed

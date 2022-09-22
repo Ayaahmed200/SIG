@@ -48,10 +48,11 @@ public class ActionController {
     public ActionController(LoaderController loader, SIGFrame frame) {
         this.loader = loader;
         this.frame = frame;
+        this.fillTables("src/main/java/InvoiceHeader.csv", "src/main/java/InvoiceLine.csv");
     }
 
-    public void fillTables() {
-        loader.loadData();
+    public void fillTables(String header_file_path, String line_file_path) {
+        loader.loadData(header_file_path, line_file_path);
         store_invoice_header_table_model = loader.getInvoiceHeaderModel();
         store_invoice_line_table_model = loader.getInvoiceLineModel();
         this.refreshTables();
