@@ -95,17 +95,17 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="create_inc" min="-2" max="-2" attributes="0"/>
+                      <Component id="create_invoice_header" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="del_inv" min="-2" pref="123" max="-2" attributes="0"/>
+                      <Component id="delete_invoice_header" min="-2" pref="123" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="317" max="-2" attributes="0"/>
-                              <Component id="del_item" min="-2" pref="134" max="-2" attributes="0"/>
+                              <Component id="delete_invoice_line" min="-2" pref="134" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
-                              <Component id="create_item" min="-2" pref="131" max="-2" attributes="0"/>
+                              <Component id="create_invoice_line" min="-2" pref="131" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -168,12 +168,12 @@
               <EmptySpace type="separate" pref="36" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="create_inc" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="del_inv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="create_invoice_header" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="delete_invoice_header" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="create_item" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="del_item" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="create_invoice_line" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="delete_invoice_line" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="36" max="32767" attributes="0"/>
@@ -189,7 +189,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="Allinv_table">
+        <Component class="javax.swing.JTable" name="invoice_headers_table">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -228,7 +228,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Allinv_tableMousePressed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="invoice_headers_tableMousePressed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -276,7 +276,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="inv_itemtable">
+        <Component class="javax.swing.JTable" name="invoice_lines_table">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="7">
@@ -321,44 +321,41 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="inv_itemtableFocusLost"/>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="inv_itemtableMousePressed"/>
-            <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="inv_itemtableInputMethodTextChanged"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="inv_itemtableKeyPressed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="invoice_lines_tableMousePressed"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="create_inc">
+    <Component class="javax.swing.JButton" name="create_invoice_header">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create New Invoice"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="create_incActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="create_invoice_headerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="del_inv">
+    <Component class="javax.swing.JButton" name="delete_invoice_header">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete Invoice"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="del_invActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delete_invoice_headerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="create_item">
+    <Component class="javax.swing.JButton" name="create_invoice_line">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create New Item"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="create_itemActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="create_invoice_lineActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="del_item">
+    <Component class="javax.swing.JButton" name="delete_invoice_line">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete Item"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="del_itemActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delete_invoice_lineActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="invoice_total_label">

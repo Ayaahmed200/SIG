@@ -48,9 +48,9 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                      <Component id="ok_create_invc" min="-2" pref="103" max="-2" attributes="0"/>
+                      <Component id="ok_create_invoice" min="-2" pref="103" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="cancel_create_invc" min="-2" pref="107" max="-2" attributes="0"/>
+                      <Component id="cancel_create_invoice" min="-2" pref="107" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="53" max="32767" attributes="0"/>
@@ -77,8 +77,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ok_create_invc" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cancel_create_invc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ok_create_invoice" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cancel_create_invoice" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="41" max="32767" attributes="0"/>
           </Group>
@@ -100,20 +100,20 @@
     </Component>
     <Component class="javax.swing.JTextField" name="date_txtfield">
     </Component>
-    <Component class="javax.swing.JButton" name="ok_create_invc">
+    <Component class="javax.swing.JButton" name="ok_create_invoice">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ok"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ok_create_invcActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ok_create_invoiceActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="cancel_create_invc">
+    <Component class="javax.swing.JButton" name="cancel_create_invoice">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel_create_invcActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel_create_invoiceActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

@@ -6,19 +6,15 @@ package controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
-import javax.swing.table.TableModel;
+import javax.swing.JOptionPane;
 import model.InvoiceHeader;
 import model.InvoiceHeaderTableModel;
 import model.InvoiceLine;
@@ -49,7 +45,7 @@ public class LoaderController {
         invoices_lines = new ArrayList<>();
     }
 
-    public void loadInvoicesData(String header_file_name) {
+    public void loadInvoicesData(String header_file_name) throws Exception, ParseException, IOException {
         File header_file = null;
         if (header_file_name != null) {
             header_file = new File(header_file_name);
@@ -59,9 +55,11 @@ public class LoaderController {
                 header_file = invoice_loader.getSelectedFile();
             }
         }
-        
-        FileInputStream fls = null;
-        try {
+
+        if (!".csv".equals((header_file.toString()).substring((header_file.toString()).lastIndexOf(".")))) {
+            throw new Exception();
+        } else {
+            FileInputStream fls = null;
             List<String> lines = Files.lines(Paths.get(header_file.getAbsolutePath())).collect(Collectors.toList());
             String[][] data = new String[lines.size()][invoices_col_count];
 
@@ -77,24 +75,13 @@ public class LoaderController {
                 ));
             }
             max_id = Integer.parseInt(data[lines.size() - 1][0]);
-            System.out.println(lines.size());
-        } catch (FileNotFoundException e) {
-            System.out.println("FileNotFoundException " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("IOException" + e.getMessage());
-        } catch (ParseException ex) {
-            Logger.getLogger(LoaderController.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (fls != null) {
-                    fls.close();
-                }
-            } catch (IOException e) {
+            if (fls != null) {
+                fls.close();
             }
         }
     }
 
-    public void loadInvoicesLinesData(String lines_file_name) {
+    public void loadInvoicesLinesData(String lines_file_name) throws Exception, IOException {
         File lines_file = null;
         if (lines_file_name != null) {
             lines_file = new File(lines_file_name);
@@ -105,8 +92,10 @@ public class LoaderController {
             }
         }
 
-        FileInputStream fls = null;
-        try {
+        if (!".csv".equals((lines_file.toString()).substring((lines_file.toString()).lastIndexOf(".")))) {
+            throw new Exception();
+        } else {
+            FileInputStream fls = null;
             List<String> lines = Files.lines(Paths.get(lines_file.getAbsolutePath())).collect(Collectors.toList());
             String[][] data = new String[lines.size()][lines_col_count];
             for (int i = 0; i < lines.size(); i++) {
@@ -139,32 +128,55 @@ public class LoaderController {
                 }
                 invoice.setLines(filtered_invoice_lines);
             }
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (fls != null) {
-                    fls.close();
-                }
-            } catch (IOException e) {
+            if (fls != null) {
+                fls.close();
             }
         }
     }
 
-    public void loadData(String header_file, String lines_file) {
+    public void loadData(String header_file, String lines_file) throws Exception {
         invoices = new ArrayList<>();
         invoices_lines = new ArrayList<>();
-        loadInvoicesData(header_file);
-        loadInvoicesLinesData(lines_file);
+        try {
+            loadInvoicesData(header_file);
+            loadInvoicesLinesData(lines_file);
+            this.log();
+        } catch (IOException io) {
+            JOptionPane.showMessageDialog(this.frame, "File not found, make sure the file you selected still exists", "File not found", JOptionPane.ERROR_MESSAGE);
+            throw new Exception();
+        } catch (ParseException pe) {
+            JOptionPane.showMessageDialog(this.frame, "Wrong date format, should be dd-MM-yyyy ex: 19-04-1963", "Wrong date format", JOptionPane.ERROR_MESSAGE);
+            throw new Exception();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this.frame, "Wrong file format, validate data and make sure loaded file is csv", "Wrong file format", JOptionPane.ERROR_MESSAGE);
+            throw new Exception();
+        }
     }
 
-    public InvoiceHeaderTableModel getInvoiceHeaderModel() {
+    public InvoiceHeaderTableModel getInvoiceHeaderModel() throws Exception {
         return new InvoiceHeaderTableModel(invoices);
     }
 
-    public InvoiceLineTableModel getInvoiceLineModel() {
-        return new InvoiceLineTableModel(invoices.get(0).getLines());
+    public InvoiceLineTableModel getInvoiceLineModel() throws Exception {
+        return new InvoiceLineTableModel(!invoices.isEmpty() ? invoices.get(0).getLines() : new ArrayList<InvoiceLine>());
+    }
+
+    private void log() {
+        String tab = "  ";
+        System.out.println("-----------Logging loaded data start-----------");
+        System.out.println("");
+        for (InvoiceHeader invoice : invoices) {
+            System.out.println("Invoice num: " + invoice.getNum());
+            System.out.println("{");
+            System.out.println(tab + "Date: " + ActionController.date_formatter.format(invoice.getDate()) + ",  Customer name: " + invoice.getName());
+            System.out.println(tab + "Items: [");
+            for (InvoiceLine invoice_line : invoice.getLines()) {
+                System.out.println(tab + tab + "Item name: " + invoice_line.getName() + ",  Price: " + invoice_line.getPrice() + ", Count: " + invoice_line.getCount());
+            }
+            System.out.println(tab + "]");
+            System.out.println("}");
+            System.out.println("");
+        }
+        System.out.println("-----------Logging loaded data end-----------");
     }
 }

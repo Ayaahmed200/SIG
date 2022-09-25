@@ -5,26 +5,26 @@
 package view;
 
 import controller.ActionController;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author aahmed200
  */
 public class CreateNewInvoice extends javax.swing.JFrame {
+
     ActionController action_controller;
+
     /**
      * Creates new form CreateNewInvoice
      */
     public CreateNewInvoice() {
-         super("New Invoice");
+        super("New Invoice");
         initComponents();
     }
+
     public CreateNewInvoice(ActionController action_controller) {
-         super("New Invoice");
-         this.action_controller = action_controller;
+        super("New Invoice");
+        this.action_controller = action_controller;
         initComponents();
     }
 
@@ -42,8 +42,8 @@ public class CreateNewInvoice extends javax.swing.JFrame {
         date_createinvc = new javax.swing.JLabel();
         customer_txtfield = new javax.swing.JTextField();
         date_txtfield = new javax.swing.JTextField();
-        ok_create_invc = new javax.swing.JButton();
-        cancel_create_invc = new javax.swing.JButton();
+        ok_create_invoice = new javax.swing.JButton();
+        cancel_create_invoice = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
 
@@ -53,17 +53,17 @@ public class CreateNewInvoice extends javax.swing.JFrame {
 
         date_createinvc.setText("Date");
 
-        ok_create_invc.setText("Ok");
-        ok_create_invc.addActionListener(new java.awt.event.ActionListener() {
+        ok_create_invoice.setText("Ok");
+        ok_create_invoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ok_create_invcActionPerformed(evt);
+                ok_create_invoiceActionPerformed(evt);
             }
         });
 
-        cancel_create_invc.setText("Cancel");
-        cancel_create_invc.addActionListener(new java.awt.event.ActionListener() {
+        cancel_create_invoice.setText("Cancel");
+        cancel_create_invoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel_create_invcActionPerformed(evt);
+                cancel_create_invoiceActionPerformed(evt);
             }
         });
 
@@ -90,9 +90,9 @@ public class CreateNewInvoice extends javax.swing.JFrame {
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
-                        .addComponent(ok_create_invc, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ok_create_invoice, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cancel_create_invc, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cancel_create_invoice, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -112,23 +112,19 @@ public class CreateNewInvoice extends javax.swing.JFrame {
                     .addComponent(date_txtfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ok_create_invc)
-                    .addComponent(cancel_create_invc))
+                    .addComponent(ok_create_invoice)
+                    .addComponent(cancel_create_invoice))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ok_create_invcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_create_invcActionPerformed
-    try {  
-        action_controller.OkCreateInvoice(evt, this, customer_txtfield.getText(),date_txtfield.getText());
-    } catch (ParseException ex) {
-        Logger.getLogger(CreateNewInvoice.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    }//GEN-LAST:event_ok_create_invcActionPerformed
-    private void cancel_create_invcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_create_invcActionPerformed
-action_controller.CancelCreateInvoice(evt,this);     }//GEN-LAST:event_cancel_create_invcActionPerformed
+    private void ok_create_invoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_create_invoiceActionPerformed
+        action_controller.OkCreateInvoice(evt, this, customer_txtfield.getText(), date_txtfield.getText());
+    }//GEN-LAST:event_ok_create_invoiceActionPerformed
+    private void cancel_create_invoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_create_invoiceActionPerformed
+action_controller.CancelCreateInvoice(evt,this);     }//GEN-LAST:event_cancel_create_invoiceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,7 +162,7 @@ action_controller.CancelCreateInvoice(evt,this);     }//GEN-LAST:event_cancel_cr
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancel_create_invc;
+    private javax.swing.JButton cancel_create_invoice;
     private javax.swing.JLabel customer_name_createinvc;
     private javax.swing.JTextField customer_txtfield;
     private javax.swing.JLabel date_createinvc;
@@ -174,6 +170,6 @@ action_controller.CancelCreateInvoice(evt,this);     }//GEN-LAST:event_cancel_cr
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JButton ok_create_invc;
+    private javax.swing.JButton ok_create_invoice;
     // End of variables declaration//GEN-END:variables
 }

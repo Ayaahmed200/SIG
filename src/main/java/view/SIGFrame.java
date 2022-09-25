@@ -6,20 +6,8 @@ package view;
 
 import controller.ActionController;
 import controller.LoaderController;
-import java.awt.Point;
-import java.awt.event.KeyEvent;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.TableModel;
-import model.InvoiceHeader;
-import model.InvoiceHeaderTableModel;
-import model.InvoiceLine;
-import model.InvoiceLineTableModel;
 
 /**
  *
@@ -50,7 +38,7 @@ public class SIGFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        Allinv_table = new javax.swing.JTable();
+        invoice_headers_table = new javax.swing.JTable();
         invoice_no = new javax.swing.JLabel();
         invoice_number_label = new javax.swing.JLabel();
         inv_table = new javax.swing.JLabel();
@@ -61,11 +49,11 @@ public class SIGFrame extends javax.swing.JFrame {
         invc_itemlabel = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        inv_itemtable = new javax.swing.JTable();
-        create_inc = new javax.swing.JButton();
-        del_inv = new javax.swing.JButton();
-        create_item = new javax.swing.JButton();
-        del_item = new javax.swing.JButton();
+        invoice_lines_table = new javax.swing.JTable();
+        create_invoice_header = new javax.swing.JButton();
+        delete_invoice_header = new javax.swing.JButton();
+        create_invoice_line = new javax.swing.JButton();
+        delete_invoice_line = new javax.swing.JButton();
         invoice_total_label = new javax.swing.JLabel();
         invoice_date_label = new javax.swing.JLabel();
         customer_name_label = new javax.swing.JLabel();
@@ -77,7 +65,7 @@ public class SIGFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Sales Invoice Generator"); // NOI18N
 
-        Allinv_table.setModel(new javax.swing.table.DefaultTableModel(
+        invoice_headers_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -88,12 +76,12 @@ public class SIGFrame extends javax.swing.JFrame {
                 "No.", "Date", "Customer", "Total"
             }
         ));
-        Allinv_table.addMouseListener(new java.awt.event.MouseAdapter() {
+        invoice_headers_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                Allinv_tableMousePressed(evt);
+                invoice_headers_tableMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(Allinv_table);
+        jScrollPane1.setViewportView(invoice_headers_table);
 
         invoice_no.setText("InvoicenNumber");
 
@@ -107,7 +95,7 @@ public class SIGFrame extends javax.swing.JFrame {
 
         invc_itemlabel.setText("Invoice Items");
 
-        inv_itemtable.setModel(new javax.swing.table.DefaultTableModel(
+        invoice_lines_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -121,55 +109,38 @@ public class SIGFrame extends javax.swing.JFrame {
                 "No.", "Item Name", "Item Price", "Count", "Item Total"
             }
         ));
-        inv_itemtable.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                inv_itemtableFocusLost(evt);
-            }
-        });
-        inv_itemtable.addMouseListener(new java.awt.event.MouseAdapter() {
+        invoice_lines_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                inv_itemtableMousePressed(evt);
+                invoice_lines_tableMousePressed(evt);
             }
         });
-        inv_itemtable.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                inv_itemtableInputMethodTextChanged(evt);
-            }
-        });
-        inv_itemtable.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                inv_itemtableKeyPressed(evt);
-            }
-        });
-        jScrollPane2.setViewportView(inv_itemtable);
+        jScrollPane2.setViewportView(invoice_lines_table);
 
-        create_inc.setText("Create New Invoice");
-        create_inc.addActionListener(new java.awt.event.ActionListener() {
+        create_invoice_header.setText("Create New Invoice");
+        create_invoice_header.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                create_incActionPerformed(evt);
+                create_invoice_headerActionPerformed(evt);
             }
         });
 
-        del_inv.setText("Delete Invoice");
-        del_inv.addActionListener(new java.awt.event.ActionListener() {
+        delete_invoice_header.setText("Delete Invoice");
+        delete_invoice_header.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                del_invActionPerformed(evt);
+                delete_invoice_headerActionPerformed(evt);
             }
         });
 
-        create_item.setText("Create New Item");
-        create_item.addActionListener(new java.awt.event.ActionListener() {
+        create_invoice_line.setText("Create New Item");
+        create_invoice_line.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                create_itemActionPerformed(evt);
+                create_invoice_lineActionPerformed(evt);
             }
         });
 
-        del_item.setText("Delete Item");
-        del_item.addActionListener(new java.awt.event.ActionListener() {
+        delete_invoice_line.setText("Delete Item");
+        delete_invoice_line.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                del_itemActionPerformed(evt);
+                delete_invoice_lineActionPerformed(evt);
             }
         });
 
@@ -232,16 +203,16 @@ public class SIGFrame extends javax.swing.JFrame {
                                     .addComponent(invoice_date_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(create_inc)
+                        .addComponent(create_invoice_header)
                         .addGap(33, 33, 33)
-                        .addComponent(del_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(delete_invoice_header, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(317, 317, 317)
-                                .addComponent(del_item, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(delete_invoice_line, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(173, 173, 173)
-                                .addComponent(create_item, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(create_invoice_line, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -287,11 +258,11 @@ public class SIGFrame extends javax.swing.JFrame {
                 .addGap(18, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(create_inc)
-                        .addComponent(del_inv))
+                        .addComponent(create_invoice_header)
+                        .addComponent(delete_invoice_header))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(create_item)
-                        .addComponent(del_item)))
+                        .addComponent(create_invoice_line)
+                        .addComponent(delete_invoice_line)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -306,42 +277,27 @@ public class SIGFrame extends javax.swing.JFrame {
         action_controller.save();
     }//GEN-LAST:event_saveActionPerformed
 
-    private void create_incActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_incActionPerformed
+    private void create_invoice_headerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_invoice_headerActionPerformed
         action_controller.showCreateInvoice(evt);
-    }//GEN-LAST:event_create_incActionPerformed
+    }//GEN-LAST:event_create_invoice_headerActionPerformed
 
-    private void del_invActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_invActionPerformed
+    private void delete_invoice_headerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_invoice_headerActionPerformed
         action_controller.deleteInvoice(evt);
-    }//GEN-LAST:event_del_invActionPerformed
+    }//GEN-LAST:event_delete_invoice_headerActionPerformed
 
-    private void Allinv_tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Allinv_tableMousePressed
+    private void invoice_headers_tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invoice_headers_tableMousePressed
         action_controller.clickInvoiceTable(evt);
-     }//GEN-LAST:event_Allinv_tableMousePressed
+     }//GEN-LAST:event_invoice_headers_tableMousePressed
 
-    private void create_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_itemActionPerformed
- action_controller.showCreateLine(evt);    }//GEN-LAST:event_create_itemActionPerformed
+    private void create_invoice_lineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_invoice_lineActionPerformed
+ action_controller.showCreateLine(evt);    }//GEN-LAST:event_create_invoice_lineActionPerformed
 
-    private void inv_itemtableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inv_itemtableMousePressed
-   action_controller.clickLineTable(evt);    }//GEN-LAST:event_inv_itemtableMousePressed
+    private void invoice_lines_tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invoice_lines_tableMousePressed
+   action_controller.clickLineTable(evt);    }//GEN-LAST:event_invoice_lines_tableMousePressed
 
-    private void del_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_itemActionPerformed
+    private void delete_invoice_lineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_invoice_lineActionPerformed
         action_controller.deleteInvoiceLine(evt);
-    }//GEN-LAST:event_del_itemActionPerformed
-
-    private void inv_itemtableInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_inv_itemtableInputMethodTextChanged
-        System.out.println("view.SIGFrame.inv_itemtableInputMethodTextChanged()");
-    }//GEN-LAST:event_inv_itemtableInputMethodTextChanged
-
-    private void inv_itemtableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inv_itemtableKeyPressed
-        System.out.println("view.SIGFrame.inv_itemtableKeyPressed()");
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            System.out.println("view.SIGFrame.inv_itemtableKeyPressed(VK_ENTER)");
-        }
-    }//GEN-LAST:event_inv_itemtableKeyPressed
-
-    private void inv_itemtableFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inv_itemtableFocusLost
-        System.out.println("view.SIGFrame.inv_itemtableFocusLost()");
-    }//GEN-LAST:event_inv_itemtableFocusLost
+    }//GEN-LAST:event_delete_invoice_lineActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,21 +335,21 @@ public class SIGFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Allinv_table;
     private javax.swing.JMenuBar MenuBar;
-    private javax.swing.JButton create_inc;
-    private javax.swing.JButton create_item;
+    private javax.swing.JButton create_invoice_header;
+    private javax.swing.JButton create_invoice_line;
     private javax.swing.JLabel cus_name;
     private javax.swing.JLabel customer_name_label;
-    private javax.swing.JButton del_inv;
-    private javax.swing.JButton del_item;
+    private javax.swing.JButton delete_invoice_header;
+    private javax.swing.JButton delete_invoice_line;
     private javax.swing.JMenu file_menu;
     private javax.swing.JLabel inv_date;
-    private javax.swing.JTable inv_itemtable;
     private javax.swing.JLabel inv_table;
     private javax.swing.JLabel inv_total;
     private javax.swing.JLabel invc_itemlabel;
     private javax.swing.JLabel invoice_date_label;
+    private javax.swing.JTable invoice_headers_table;
+    private javax.swing.JTable invoice_lines_table;
     private javax.swing.JLabel invoice_no;
     private javax.swing.JLabel invoice_number_label;
     private javax.swing.JLabel invoice_total_label;
@@ -406,25 +362,25 @@ public class SIGFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public JTable getInvoiceHeaderTable() {
-        return this.Allinv_table;
+        return this.invoice_headers_table;
     }
-    
+
     public JTable getInvoiceLineTable() {
-        return this.inv_itemtable;
+        return this.invoice_lines_table;
     }
-    
+
     public JLabel getInvoiceNumberLabel() {
         return this.invoice_number_label;
     }
-    
+
     public JLabel getInvoiceDateLabel() {
         return this.invoice_date_label;
     }
-    
+
     public JLabel getInvoiceCustomerNameLabel() {
         return this.customer_name_label;
     }
-    
+
     public JLabel getInvoiceTotalLabel() {
         return this.invoice_total_label;
     }

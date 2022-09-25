@@ -25,9 +25,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="52" max="32767" attributes="0"/>
-              <Component id="ok_lin_btn" min="-2" pref="115" max="-2" attributes="0"/>
+              <Component id="ok_create_line" min="-2" pref="115" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="cancel_lin_btn" min="-2" pref="104" max="-2" attributes="0"/>
+              <Component id="cancel_create_line" min="-2" pref="104" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -87,8 +87,8 @@
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ok_lin_btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cancel_lin_btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ok_create_line" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cancel_create_line" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
@@ -120,20 +120,20 @@
     </Component>
     <Component class="javax.swing.JTextField" name="item_price_line_label">
     </Component>
-    <Component class="javax.swing.JButton" name="cancel_lin_btn">
+    <Component class="javax.swing.JButton" name="cancel_create_line">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel_lin_btnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel_create_lineActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="ok_lin_btn">
+    <Component class="javax.swing.JButton" name="ok_create_line">
       <Properties>
         <Property name="text" type="java.lang.String" value="OK"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ok_lin_btnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ok_create_lineActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">

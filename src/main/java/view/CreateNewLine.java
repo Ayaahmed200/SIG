@@ -11,20 +11,20 @@ import controller.ActionController;
  * @author aahmed200
  */
 public class CreateNewLine extends javax.swing.JFrame {
-ActionController action_controller;
+
+    ActionController action_controller;
 
     /**
      * Creates new form CreateNewLine
      */
-
     public CreateNewLine() {
         initComponents();
     }
+
     public CreateNewLine(ActionController action_controller) {
         initComponents();
-        this.action_controller =  action_controller;
+        this.action_controller = action_controller;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,8 +41,8 @@ ActionController action_controller;
         item_name_line_label = new javax.swing.JTextField();
         item_count_line_label = new javax.swing.JTextField();
         item_price_line_label = new javax.swing.JTextField();
-        cancel_lin_btn = new javax.swing.JButton();
-        ok_lin_btn = new javax.swing.JButton();
+        cancel_create_line = new javax.swing.JButton();
+        ok_create_line = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
@@ -60,17 +60,17 @@ ActionController action_controller;
             }
         });
 
-        cancel_lin_btn.setText("Cancel");
-        cancel_lin_btn.addActionListener(new java.awt.event.ActionListener() {
+        cancel_create_line.setText("Cancel");
+        cancel_create_line.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel_lin_btnActionPerformed(evt);
+                cancel_create_lineActionPerformed(evt);
             }
         });
 
-        ok_lin_btn.setText("OK");
-        ok_lin_btn.addActionListener(new java.awt.event.ActionListener() {
+        ok_create_line.setText("OK");
+        ok_create_line.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ok_lin_btnActionPerformed(evt);
+                ok_create_lineActionPerformed(evt);
             }
         });
 
@@ -82,9 +82,9 @@ ActionController action_controller;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(ok_lin_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ok_create_line, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cancel_lin_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancel_create_line, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(105, 105, 105))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,8 +130,8 @@ ActionController action_controller;
                     .addComponent(item_price_line_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ok_lin_btn)
-                    .addComponent(cancel_lin_btn))
+                    .addComponent(ok_create_line)
+                    .addComponent(cancel_create_line))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -142,13 +142,13 @@ ActionController action_controller;
         // TODO add your handling code here:
     }//GEN-LAST:event_item_name_line_labelActionPerformed
 
-    private void ok_lin_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_lin_btnActionPerformed
-        action_controller.OkLineInvoice(evt, this, item_name_line_label.getText(),item_count_line_label.getText(),item_price_line_label.getText());
-    }//GEN-LAST:event_ok_lin_btnActionPerformed
+    private void ok_create_lineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_create_lineActionPerformed
+        action_controller.OkCreateLine(evt, this, item_name_line_label.getText(), item_count_line_label.getText(), item_price_line_label.getText());
+    }//GEN-LAST:event_ok_create_lineActionPerformed
 
-    private void cancel_lin_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_lin_btnActionPerformed
-action_controller.CancelLineInvoice(evt,this);          // TODO add your handling code here:
-    }//GEN-LAST:event_cancel_lin_btnActionPerformed
+    private void cancel_create_lineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_create_lineActionPerformed
+        action_controller.CancelCreateLine(evt, this);          // TODO add your handling code here:
+    }//GEN-LAST:event_cancel_create_lineActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,7 +186,7 @@ action_controller.CancelLineInvoice(evt,this);          // TODO add your handlin
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancel_lin_btn;
+    private javax.swing.JButton cancel_create_line;
     private javax.swing.JLabel item_count_line;
     private javax.swing.JTextField item_count_line_label;
     private javax.swing.JLabel item_name_line;
@@ -195,6 +195,6 @@ action_controller.CancelLineInvoice(evt,this);          // TODO add your handlin
     private javax.swing.JTextField item_price_line_label;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton ok_lin_btn;
+    private javax.swing.JButton ok_create_line;
     // End of variables declaration//GEN-END:variables
 }
